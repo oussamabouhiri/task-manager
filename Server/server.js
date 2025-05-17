@@ -30,11 +30,14 @@ if (!fs.existsSync(uploadsDir)) {
 app.use(express.json({ extended: false }));
 app.use(
   cors({
-    origin: process.env.CLIENT_URL,
+    origin: [
+      process.env.CLIENT_URL,
+      "https://taskmanager-eight-alpha.vercel.app", // Your production frontend URL
+      "https://taskmanager-nduxg7efz-oussamabouhiris-projects.vercel.app", // Your preview frontend URL
+    ],
     credentials: true,
   })
 );
-
 // Serve static files - make sure this comes before the routes
 app.use(express.static(path.join(__dirname, "public")));
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
