@@ -207,6 +207,21 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ---
 
+## 📸 Screenshots
+
+Here are some screenshots of the application:
+
+![Login Page](./screenshots/login%20page.png)
+_User authentication interface where users can sign in to their accounts_
+
+![Profile Management](./screenshots/profil-page.png)
+_User profile page where users can update their personal information_
+
+![Tasks Dashboard](./screenshots/task%20creation.png)
+_Main dashboard showing tasks with filtering and sorting capabilities_
+
+---
+
 ## 📜 License
 
 Distributed under the MIT License. See `LICENSE` for more information.
