@@ -5,21 +5,42 @@ import path from "path";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
+  build: {
+    outDir: "dist",
+    sourcemap: false,
+    minify: true,
+    // Add this to prevent CSS ordering issues
+    cssCodeSplit: false,
+  },
   server: {
     port: 5173,
   },
   resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "./src"),
-      components: path.resolve(__dirname, "./src/components"),
-      pages: path.resolve(__dirname, "./src/pages"),
-      contexts: path.resolve(__dirname, "./src/contexts"),
-      services: path.resolve(__dirname, "./src/services"),
-      utils: path.resolve(__dirname, "./src/utils"),
-    },
+    alias: [
+      { find: "@", replacement: path.resolve(__dirname, "src") },
+      {
+        find: "components",
+        replacement: path.resolve(__dirname, "src/components"),
+      },
+      { find: "pages", replacement: path.resolve(__dirname, "src/pages") },
+      {
+        find: "contexts",
+        replacement: path.resolve(__dirname, "src/contexts"),
+      },
+      {
+        find: "services",
+        replacement: path.resolve(__dirname, "src/services"),
+      },
+      { find: "utils", replacement: path.resolve(__dirname, "src/utils") },
+    ],
   },
   define: {
-    // Make process.env available in the client
-    "process.env": {},
+    // Handle environment variables more safely
+    "process.env": Object.keys(process.env).reduce((env, key) => {
+      if (key.startsWith("VITE_")) {
+        env[key] = JSON.stringify(process.env[key]);
+      }
+      return env;
+    }, {}),
   },
 });
