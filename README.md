@@ -95,7 +95,7 @@ npm install
 # MAX_FILE_SIZE=5242880
 # JWT_EXPIRY=5d
 # DEFAULT_AVATAR_PATH=/defaults/default-avatar.png
-
+dd
 # Start the server
 npm start
 # For development with auto-restart
